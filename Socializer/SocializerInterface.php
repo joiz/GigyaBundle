@@ -32,6 +32,16 @@ interface SocializerInterface
     function notifyAction($token, $uid, $action);
     function getGMredeemPoints($token, $id, $points);
     function getUserInfo($token, $uid = null);
+    /**
+     * Return points action
+     *
+     * @param $token
+     * @param $uid
+     * @param $action
+     * @param $points
+     * @return mixed
+     */
+    function returnPointsAction($token, $uid, $action, $points);
 
     /**
      * get comments from gigya

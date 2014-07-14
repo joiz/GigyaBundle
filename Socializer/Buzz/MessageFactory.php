@@ -227,6 +227,26 @@ class MessageFactory
         return $request;
     }
 
+    public function returnPointsActionRequest($token, $uid, $action, $points)
+    {
+        $request = new Request(Request::METHOD_POST, '/gm.notifyAction?'.http_build_query(array(
+                'apiKey'    => $this->key,
+                'secret'    => $this->secret,
+                'nonce'     => $token,
+                'timestamp' => time(),
+            )), $this->gmhost);
+
+        $data = array(
+            'uid'   => $uid,
+            'action'   => $action,
+            'points' => $points
+        );
+
+        $request->setContent(http_build_query($data));
+
+        return $request;
+    }
+
     public function getSessionInfoRequest($uid, $provider)
     {
         return new Request(Request::METHOD_GET, '/socialize.getSessionInfo?'.http_build_query(array(
